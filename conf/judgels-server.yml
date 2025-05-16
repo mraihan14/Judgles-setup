@@ -1,0 +1,117 @@
+server:
+  applicationConnectors:
+    - type: http
+      port: 9101
+
+  adminConnectors:
+    - type: http
+      port: 9111
+
+  requestLog:
+    appenders:
+    - type: file
+      currentLogFilename: var/log/judgels-server-request.log
+      archivedLogFilenamePattern: var/log/judgels-server-request-%d.log.gz
+      archivedFileCount: 14
+
+database:
+  driverClass: com.mysql.cj.jdbc.Driver
+  url: jdbc:mysql://judgels-db/judgels?useSSL=false&allowPublicKeyRetrieval=true
+  user: judgelsuser  # CHANGE THIS
+  password: password # CHANGE THIS
+  properties:
+    charSet: UTF-8
+    hibernate.dialect: org.hibernate.dialect.MySQL8Dialect
+    hibernate.generate_statistics: false
+    hibernate.query.plan_cache_max_size: 64
+    hibernate.query.plan_parameter_metadata_max_size: 32
+
+logging:
+  appenders:
+    - type: console
+      threshold: INFO
+    - type: file
+      currentLogFilename: var/log/judgels-server.log
+      archivedLogFilenamePattern: var/log/judgels-server-%d.log.gz
+      archivedFileCount: 14
+
+  loggers:
+    org.hibernate.type.BasicTypeRegistry:
+      level: OFF
+
+webSecurity:
+  cors:
+    allowedOrigins: "*"
+    allowCredentials: true
+
+judgels:
+  baseDataDir: var/data
+
+  app:
+    name: judgels
+  rabbitmq:
+    host: judgels-rabbitmq 
+    username: judgels       # CHANGE THIS
+    password: password      # CHANGE THIS
+
+jophiel:
+  auth:
+  userAvatar:
+    fs:
+      type: local
+
+  userRegistration:
+    enabled: false
+    useRecaptcha: false
+    activationEmailTemplate:
+      subject: UNUSED
+      body: UNUSED
+
+  userResetPassword:
+    enabled: false
+    requestEmailTemplate:
+      subject: UNUSED
+      body: UNUSED
+    resetEmailTemplate:
+      subject: UNUSED
+      body: UNUSED
+
+  superadmin:
+    initialPassword: superadminpass   # CHANGE THIS
+
+  session:
+    maxConcurrentSessionsPerUser: -1  # OPTIONAL, -1 for unlimited session per user
+    disableLogout: false
+
+  web:
+    announcements: []
+
+sandalphon:
+  gabriel:
+    gradingRequestQueueName: gabriel-grading-request
+    gradingResponseQueueName: sandalphon-grading-response
+
+uriel:
+  gabriel:
+    gradingRequestQueueName: gabriel-grading-request
+    gradingResponseQueueName: uriel-grading-response
+
+  submission:
+    fs:
+      type: local
+
+  file:
+    fs:
+      type: local
+
+jerahmeel:
+  gabriel:
+    gradingRequestQueueName: gabriel-grading-request
+    gradingResponseQueueName: jerahmeel-grading-response
+
+  submission:
+    fs:
+      type: local
+
+  stats:
+    enabled: true
