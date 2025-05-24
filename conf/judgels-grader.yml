@@ -1,0 +1,36 @@
+server:
+  applicationConnectors:
+    - type: http
+      port: 9007
+
+logging:
+  appenders:
+    - type: console
+      threshold: INFO
+      logFormat: "%-5p [%d{ISO8601,UTC}] [%X{gradingJID:--}]: %m%n%rEx"
+    - type: file
+      logFormat: "%-5p [%d{ISO8601,UTC}] [%X{gradingJID:--}]: %m%n%rEx"
+      currentLogFilename: var/log/judgels-grader.log
+      archivedLogFilenamePattern: var/log/judgels-grader-%d.log.gz
+      archivedFileCount: 14
+
+judgels:
+  baseDataDir: var/data
+
+  rabbitmq:
+    host: localhost         # CHANGE THIS TO CORE VM IP
+    username: judgels       # CHANGE THIS TO VALID RABBITMQ USER
+    password: password      # CHANGE THIS TO VALID RABBITMQ PASSWORD
+
+gabriel:
+  grading:
+    gradingRequestQueueName: gabriel-grading-request
+    numWorkerThreads: 2
+
+  cache:
+    cachedBaseDataDir: var/data
+    serverBaseDataDir: user@localhost:/opt/judgels/server/var/data   # CHANGE THIS TO VALID SSH CREDENTIAL AND CORE VM DIRECTORY
+    rsyncIdentityFile: var/conf/judgels-grader
+
+  isolate:
+    baseDir: /judgels/isolate

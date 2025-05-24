@@ -38,7 +38,6 @@ services:
         max-file: "2"
     ports:
       - "9101:9101"
-      - "9111:9111"
     volumes:
       - "./judgels/server/var:/judgels/server/var"
       - "./conf/judgels-server.yml:/judgels/server/var/conf/judgels-server.yml"
@@ -55,6 +54,7 @@ services:
   judgels-db:
     image: mysql:8.4
     container_name: judgels-db
+    command: mysqld --mysql-native-password=ON
     environment:
       - MYSQL_ROOT_PASSWORD=${DB_ROOT_PASSWORD}
       - MYSQL_DATABASE=${DB_NAME}
