@@ -23,7 +23,7 @@ else
 fi
 
 COMPOSE_PROJECT=$(basename "$PWD")
-COMPOSE_NETWORK="${COMPOSE_PROJECT}_judgels-net"
+COMPOSE_NETWORK="judgels-compose_judgels-net"
 
 docker network inspect "$COMPOSE_NETWORK" >/dev/null 2>&1 || docker network create "$COMPOSE_NETWORK"
 
