@@ -25,6 +25,7 @@ COMPOSE_NETWORK=judgels-compose_judgels-net
 
 echo "Running Judgels Server migration...";
 
+docker network create judgels-compose_judgels-net
 docker run --rm \
     --name judgels-server-migrate \
     --network "$COMPOSE_NETWORK" \
