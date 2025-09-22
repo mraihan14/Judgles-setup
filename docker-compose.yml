@@ -12,7 +12,7 @@ services:
     networks:
       - judgels-net
   judgels-client:
-    image: ghcr.io/ia-toki/judgels/client:latest
+    image: ghcr.io/ia-toki/judgels/client:2.22.0
     restart: on-failure:3      
     container_name: judgels-client
     logging:
@@ -28,7 +28,7 @@ services:
     networks:
       - judgels-net
   judgels-server:
-    image: ghcr.io/ia-toki/judgels/server:latest
+    image: ghcr.io/ia-toki/judgels/server:2.22.0
     restart: on-failure:3
     container_name: judgels-server
     logging:
@@ -77,8 +77,8 @@ services:
       - RABBITMQ_DEFAULT_USER=${RABBITMQ_USER}
       - RABBITMQ_DEFAULT_PASS=${RABBITMQ_PASSWORD}
     ports:
-      - "15672:15672"
-      - "5672:5672"
+      - "15671:15672"
+      - "5671:5672"
     networks:
       - judgels-net
 
