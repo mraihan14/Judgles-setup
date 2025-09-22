@@ -12,7 +12,7 @@ services:
     networks:
       - judgels-net
   judgels-client:
-    image: ghcr.io/ia-toki/judgels/client${VERSION}
+    image: ghcr.io/ia-toki/judgels/client:${VERSION}
     restart: on-failure:3      
     container_name: judgels-client
     logging:
