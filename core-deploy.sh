@@ -30,5 +30,5 @@ docker run --rm \
     --network "$COMPOSE_NETWORK" \
     -v "./conf/judgels-server.yml:/judgels/server/var/conf/judgels-server.yml" \
     -v "./logs/judgels-server.log:/judgels/server/var/log/judgels-server.log" \
-    ghcr.io/ia-toki/judgels/server:2.22.0 \
+    ghcr.io/ia-toki/judgels/server:2.19.0 \
     db migrate
