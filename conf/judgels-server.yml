@@ -17,7 +17,7 @@ server:
 database:
   driverClass: com.mysql.cj.jdbc.Driver
   url: jdbc:mysql://judgels-db/judgels?useSSL=false&allowPublicKeyRetrieval=true
-  user: judgels-userr  # CHANGE THIS
+  user: judgles-userr  # CHANGE THIS
   password: 4321-Bebek # CHANGE THIS
   properties:
     charSet: UTF-8
